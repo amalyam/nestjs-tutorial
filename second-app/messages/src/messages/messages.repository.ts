@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 
 export class MessagesRepository {
-  findOne(id: string) {
+  async findOne(id: string) {
     const contents = await readFile('messages.json', 'utf8');
     const messages = JSON.parse(contents);
 
@@ -23,6 +23,6 @@ export class MessagesRepository {
 
     messages[id] = { id, content };
 
-    await writeFile('message.json', JSON.stringify(messages));
+    await writeFile('messages.json', JSON.stringify(messages));
   }
 }
